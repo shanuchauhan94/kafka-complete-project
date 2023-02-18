@@ -1,0 +1,26 @@
+server:
+  port: 9090
+
+spring:
+  kafka:
+    producer:
+      bootstrap-servers:
+        - 127.0.0.1:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    # org.spring.kafkaspring.utility.CustomSerializer
+
+    consumer:
+      bootstrap-servers:
+        - 127.0.0.1:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      # org.spring.kafkaspring.utility.CustomDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: org.spring.kafkaspring.model
+      group-id: user-group-id
+
+
